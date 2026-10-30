@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { quiz, quizLabels, quizWhatsappUrl } from '../src/quiz-data.js';
 
-test('Todas as 140 combinações levam as três respostas ao WhatsApp sem dupla codificação', () => {
+test('Todas as 120 combinações levam as três respostas ao WhatsApp sem dupla codificação', () => {
   let count = 0;
   for (const interest of quiz.steps[0].options) for (const priority of quiz.steps[1].options) for (const intention of quiz.steps[2].options) {
     const answers = { main_interest: interest.id, priority: priority.id, contact_intention: intention.id };
@@ -15,7 +15,7 @@ test('Todas as 140 combinações levam as três respostas ao WhatsApp sem dupla 
     assert.ok(quiz.microcopy[interest.id]);
     count++;
   }
-  assert.equal(count, 140);
+  assert.equal(count, 120);
 });
 test('Respostas incompletas ou desconhecidas não geram encaminhamento', () => {
   assert.throws(() => quizWhatsappUrl({}));

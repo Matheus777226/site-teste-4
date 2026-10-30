@@ -1,9 +1,11 @@
-import { treatments, whatsappUrl } from './data.js';
+import { trackEvent } from './tracking.js';
+import { quiz2 } from './quiz-2-data.js';
+import { services, whatsappUrl } from './data.js';
 import { treatmentImages } from './treatment-images.js';
 const list = document.querySelector('#treatment-list');
-treatments.forEach(([name, headline, description, cta], index) => {
+services.forEach(({id, name, headline, description, cta, message}, index) => {
   const item = document.createElement('details');
-  item.innerHTML = `<summary><span class="number">0${index + 1}</span>${name}<span class="plus" aria-hidden="true">+</span></summary><div class="treatment-body"><h3>${headline}</h3><p>${description}</p><a class="text-link" target="_blank" rel="noopener noreferrer" href="${whatsappUrl(`Vi o tratamento ${name} no site da Pherface Blumenau e gostaria de mais informações.`)}">${cta} <span>↗</span></a></div>`;
+  item.innerHTML = `<summary><span class="number">0${index + 1}</span>${name}<span class="plus" aria-hidden="true">+</span></summary><div class="treatment-body"><h3>${headline}</h3><p>${description}</p><a class="text-link" target="_blank" rel="noopener noreferrer" href="${whatsappUrl(message)}">${cta} <span>↗</span></a></div>`;
   const media = document.createElement('figure');
   media.className = 'treatment-inline-image';
   const image = document.createElement('img');
@@ -19,18 +21,36 @@ treatments.forEach(([name, headline, description, cta], index) => {
   if (index === 0) item.open = true;
   item.addEventListener('toggle', () => {
     if (!item.open) return;
+    trackEvent('service_viewed', { service_id: id, service_name: name });
     [...list.children].forEach(other => { if (other !== item) other.open = false; });
-    document.querySelector('#visual-number').textContent = `0${index + 1} — 07`;
+    document.querySelector('#visual-number').textContent = `0${index + 1} — 05`;
     document.querySelector('#visual-caption').textContent = headline;
     const featured = document.querySelector('#treatment-featured');
     featured.src = treatmentImages[index].src;
     featured.alt = treatmentImages[index].alt;
   });
+  item.querySelector('.text-link').addEventListener('click', () => trackEvent('service_whatsapp_clicked', { service_id: id, service_name: name }));
   list.append(item);
 });
 document.querySelectorAll('[data-wa]').forEach(a => { a.href = whatsappUrl(a.dataset.wa); a.target = '_blank'; a.rel = 'noopener noreferrer'; });
 import { initQuiz } from './quiz.js';
 initQuiz(document.querySelector('#quiz'));
+initQuiz(document.querySelector('#quiz-2'), quiz2);
+// Keep the floating contact control from covering either quiz's primary action.
+if ('IntersectionObserver' in window) {
+  const visibleActions = new Set();
+  const floating = document.querySelector('.floating-wa');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => entry.isIntersecting ? visibleActions.add(entry.target) : visibleActions.delete(entry.target));
+    for (const action of visibleActions) if (!action.isConnected) visibleActions.delete(action);
+    floating.hidden = visibleActions.size > 0;
+  });
+  const watch = () => {
+    observer.disconnect(); visibleActions.clear(); floating.hidden = false;
+    document.querySelectorAll('.quiz-send').forEach(action => observer.observe(action));
+  };
+  document.querySelectorAll('.quiz-root').forEach(root => new MutationObserver(watch).observe(root, { childList: true, subtree: true }));
+}
 const menu = document.querySelector('.menu');
 function closeMenu(){ document.querySelector('#navigation').classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.setAttribute('aria-label','Abrir menu'); }
 menu.addEventListener('click', () => { const open = document.querySelector('#navigation').classList.toggle('open'); menu.setAttribute('aria-expanded',String(open)); menu.setAttribute('aria-label',open ? 'Fechar menu' : 'Abrir menu'); });

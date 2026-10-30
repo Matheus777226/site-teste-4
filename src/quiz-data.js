@@ -9,44 +9,38 @@ export const quiz = {
         {
           "id": "expression_lines",
           "label": "Linhas de expressão",
-          "description": "Quero conversar sobre cuidados relacionados às linhas e marcas de expressão.",
-          "visual": "close abstrato e sofisticado da região dos olhos e testa"
+          "related_service": "Botox",
+          "description": "Converse com a equipe sobre seus interesses durante uma avaliação individual."
+        },
+        {
+          "id": "dark_circles",
+          "label": "Olheiras",
+          "related_service": "Preenchimento de Olheiras",
+          "description": "Converse com a equipe sobre seus interesses durante uma avaliação individual."
         },
         {
           "id": "lips",
           "label": "Lábios",
-          "description": "Quero entender as possibilidades para valorizar meus lábios.",
-          "visual": "composição editorial minimalista focada nos lábios"
+          "related_service": "Preenchimento Labial",
+          "description": "Converse com a equipe sobre seus interesses durante uma avaliação individual."
         },
         {
-          "id": "facial_contour",
-          "label": "Contorno facial",
-          "description": "Gostaria de conversar sobre proporções e contornos do rosto.",
-          "visual": "perfil facial com iluminação lateral sofisticada"
+          "id": "nasolabial",
+          "label": "Bigode chinês",
+          "related_service": "Preenchimento Bigode Chinês",
+          "description": "Converse com a equipe sobre seus interesses durante uma avaliação individual."
         },
         {
-          "id": "skin_quality",
-          "label": "Qualidade da pele",
-          "description": "Quero cuidar da aparência, textura e aspecto geral da minha pele.",
-          "visual": "macro de pele com iluminação premium"
-        },
-        {
-          "id": "collagen",
-          "label": "Colágeno e firmeza",
-          "description": "Quero conversar sobre cuidados relacionados à firmeza e qualidade da pele.",
-          "visual": "forma 3D orgânica representando estrutura e sustentação"
-        },
-        {
-          "id": "spots_texture",
-          "label": "Manchas e textura",
-          "description": "Quero saber mais sobre opções de cuidado para manchas ou textura.",
-          "visual": "macro de pele abstrata com partículas de luz"
+          "id": "body_contour",
+          "label": "Contorno corporal",
+          "related_service": "Harmonização Corporal",
+          "description": "Converse com a equipe sobre seus interesses durante uma avaliação individual."
         },
         {
           "id": "not_sure",
           "label": "Ainda não sei",
-          "description": "Quero conversar com a equipe e entender quais possibilidades existem para mim.",
-          "visual": "rosto editorial parcialmente oculto por vidro translúcido"
+          "related_service": "Avaliação personalizada",
+          "description": "Converse com a equipe sobre seus interesses durante uma avaliação individual."
         }
       ]
     },
@@ -109,29 +103,37 @@ export const quiz = {
     }
   ],
   "microcopy": {
-    "expression_lines": "Sua principal dúvida está relacionada a linhas de expressão. A equipe pode conversar com você sobre as possibilidades disponíveis após uma avaliação.",
-    "lips": "Você demonstrou interesse em valorizar seus lábios. Converse com a equipe para conhecer as possibilidades disponíveis.",
-    "facial_contour": "Seu interesse está relacionado ao contorno facial. Uma avaliação individual ajuda a entender melhor suas características e objetivos.",
-    "skin_quality": "Você demonstrou interesse nos cuidados com a qualidade da pele. A equipe pode apresentar as tecnologias e opções disponíveis.",
-    "collagen": "Seu interesse principal está relacionado à firmeza e ao cuidado com a pele. Converse com a equipe para entender as possibilidades.",
-    "spots_texture": "Você quer saber mais sobre cuidados relacionados a manchas e textura. Fale com a equipe para receber orientação individual.",
+    "expression_lines": "Seu interesse é linhas de expressão. Converse com a equipe para entender as possibilidades após uma avaliação individual.",
+    "dark_circles": "Seu interesse é olheiras. Converse com a equipe para entender as possibilidades após uma avaliação individual.",
+    "lips": "Seu interesse é lábios. Converse com a equipe para entender as possibilidades após uma avaliação individual.",
+    "nasolabial": "Seu interesse é bigode chinês. Converse com a equipe para entender as possibilidades após uma avaliação individual.",
+    "body_contour": "Seu interesse é contorno corporal. Converse com a equipe para entender as possibilidades após uma avaliação individual.",
     "not_sure": "Sem problema. Você não precisa saber qual procedimento procura. Conte seus objetivos para a equipe durante uma avaliação."
-  }
+  },
+  "id": "quiz_1"
 };
-export function quizLabels(answers) {
-  return quiz.steps.map(step => {
+export function quizLabels(answers, config = quiz) {
+  return config.steps.map(step => {
     const option = step.options.find(option => option.id === answers[step.id]);
     if (!option) throw new Error('Responda às três perguntas antes de continuar.');
     return option.label;
   });
 }
-export function quizWhatsappUrl(answers) {
-  const [interest, priority, intention] = quizLabels(answers);
+export function quizWhatsappUrl(answers, config = quiz) {
+  const [interest, priority, intention] = quizLabels(answers, config);
+  if(config.id === 'quiz_2') {
+    const values = config.steps.map(step => step.options.find(option => option.id === answers[step.id]).value);
+    const related = config.steps[0].options.find(option => option.id === answers.region).related_service;
+    const message = `Olá! Conheci a Pherface Blumenau pelo site e respondi ao questionário. ✨\n\n📍 Região que mais me interessa: ${values[0]}\n✨ O que eu procuro: ${values[1]}\n💬 Quero: ${values[2]}\n\nTenho interesse em entender melhor: ${related}.\n\nGostaria de conversar com a equipe e receber mais informações.`;
+    return `https://wa.me/5547996203106?text=${encodeURIComponent(message)}`;
+  }
+  const related = config.steps[0].options.find(option => option.id === answers.main_interest).related_service;
   const message = `Olá! Conheci a Pherface Blumenau pelo site e respondi ao questionário.
 
 Meu principal interesse: ${interest}
 Minha prioridade: ${priority}
 O que eu gostaria agora: ${intention}
+Assunto de interesse: ${related}
 
 Gostaria de conversar com a equipe e entender melhor as possibilidades para mim.`;
   return `https://wa.me/5547996203106?text=${encodeURIComponent(message)}`;

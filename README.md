@@ -40,4 +40,10 @@ Perguntas e textos condicionais: `src/quiz-data.js`. Interface: `src/quiz.js` e 
 
 ## Imagens dos tratamentos
 
-Sete imagens editoriais geradas por IA em `public/images/treatments/`. São ilustrações de áreas de interesse, sem representar procedimentos em execução, pacientes reais ou resultados. O mapeamento e as descrições acessíveis ficam em `src/treatment-images.js`. No desktop, a imagem em destaque acompanha o tratamento aberto; no celular, cada imagem aparece dentro do respectivo tratamento. Carregamento sob demanda e dimensões reservadas evitam carregar todos os arquivos na primeira dobra.
+Cinco imagens editoriais geradas por IA em `public/images/treatments/`. São ilustrações de áreas de interesse, sem representar procedimentos em execução, pacientes reais ou resultados. O mapeamento e as descrições acessíveis ficam em `src/treatment-images.js`. No desktop, a imagem em destaque acompanha o tratamento aberto; no celular, cada imagem aparece dentro do respectivo tratamento. Carregamento sob demanda e dimensões reservadas evitam carregar todos os arquivos na primeira dobra.
+
+## Serviços confirmados e segundo questionário
+
+A lista única em `src/data.js` contém Harmonização Corporal, Botox, Preenchimento Bigode Chinês, Preenchimento de Olheiras e Preenchimento Labial. O primeiro questionário permanece com suas três etapas e interesses alinhados. O segundo, em `src/quiz-2-data.js`, usa uma instância independente do mesmo componente, com região, objetivo e intenção; o serviço relacionado é um assunto de conversa, nunca indicação clínica. Cada formulário mantém suas próprias respostas em memória. O visitante confirma o envio pelo botão do WhatsApp após conferir o resumo.
+
+Eventos preparados: `service_viewed`, `service_whatsapp_clicked`, `quiz_1_started`, `quiz_1_completed`, `quiz_2_started`, `quiz_2_step_1`, `quiz_2_step_2`, `quiz_2_completed` e `quiz_2_whatsapp_clicked`. IDs das instâncias evitam colisões de acessibilidade e os eventos distinguem as duas jornadas.
