@@ -26,7 +26,6 @@ document.querySelector('#year').textContent = new Date().getFullYear();
 document.querySelectorAll('.button span, .text-link span, .header-cta span, .floating-wa i, .experience-words i').forEach(el => {
   if(el.textContent.trim() === '↗') el.innerHTML = '<svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M4 16 16 4M4 4h12v12"/></svg>';
 });
-document.querySelector('.tiny-star').innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 1v22M1 12h22M4 4l16 16M4 20 20 4"/></svg>';
 document.querySelector('#load-map').addEventListener('click', () => {
   const iframe = document.createElement('iframe'); iframe.title = 'Localização da Pherface Blumenau'; iframe.src = 'https://maps.google.com/maps?q=Rua%20Benjamin%20Constant%202670%20Blumenau%20SC&output=embed'; iframe.referrerPolicy = 'no-referrer-when-downgrade'; iframe.allowFullscreen = true;
   document.querySelector('.map-panel').replaceChildren(iframe);

@@ -127,7 +127,7 @@ export function quizLabels(answers) {
 }
 export function quizWhatsappUrl(answers) {
   const [interest, priority, intention] = quizLabels(answers);
-  const message = `Olá! Conheci a Pherface Blumenau pelo site e respondi ao questionário. ✨
+  const message = `Olá! Conheci a Pherface Blumenau pelo site e respondi ao questionário.
 
 Meu principal interesse: ${interest}
 Minha prioridade: ${priority}

@@ -1,0 +1,14 @@
+/* Quiet editorial details; decorative symbols and ornamental quiz shapes removed. */
+.ribbon{background:#141310;color:#bfb19a;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:25px 0}
+.ribbon-divider{display:block;width:1px;height:18px;background:#c6a87555;flex-shrink:0}
+.final-glow{width:650px;height:650px;top:50%;border:1px solid #c6a87512;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,#c6a87508,transparent 65%);font-size:initial;text-shadow:none}
+.button:hover{box-shadow:none}
+.visual-options .quiz-option{padding:24px 26px;min-height:140px;background:#11110f}
+.visual-options .option-copy{gap:10px}
+.visual-options .option-number{font-size:9px;letter-spacing:1.5px}
+.visual-options .option-copy strong{font-size:28px}
+.visual-options .option-description{max-width:390px;line-height:1.8}
+.quiz-option[aria-pressed=true]{box-shadow:none;background:#1b1812}
+.quiz-progress>span{box-shadow:none}
+.floating-wa{box-shadow:none;border-color:#c6a87544}
+@media(max-width:760px){.visual-options .quiz-option{padding:20px;min-height:120px}.visual-options .option-copy strong{font-size:25px}.final-glow{width:400px;height:400px}.ribbon{padding:20px 0}}
