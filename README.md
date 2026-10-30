@@ -14,6 +14,12 @@ npm run build
 
 Servidor na porta 3000, configurável por `PORT`. Para conferir a saída de produção: `SERVE_DIST=1 npm start`. A pasta `dist` também pode ser hospedada em qualquer serviço estático.
 
+## Deploy na Vercel
+
+O arquivo `vercel.json` configura um deploy estático: `npm run build` gera `dist`, sem função Node em produção. O servidor `server.mjs` é usado apenas para desenvolvimento e validação local.
+
+Na Vercel, use a raiz do repositório como Root Directory, Framework Preset **Other**, Build Command **npm run build** e Output Directory **dist**. Remova overrides antigos conflitantes e faça um novo deploy do último commit da branch `main`.
+
 ## Antes de publicar
 
 - Confirmar telefone, endereço, profissionais, procedimentos disponíveis e informações comerciais com a clínica.
