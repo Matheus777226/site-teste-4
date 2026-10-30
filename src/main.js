@@ -11,11 +11,11 @@ services.forEach(({id, name, headline, description, cta, message}, index) => {
   const image = document.createElement('img');
   image.src = treatmentImages[index].src;
   image.alt = treatmentImages[index].alt;
-  image.width = 1122; image.height = 1402;
+  image.width = treatmentImages[index].width; image.height = treatmentImages[index].height;
   image.loading = 'lazy'; image.decoding = 'async';
   media.append(image);
   const caption = document.createElement('figcaption');
-  caption.textContent = 'Imagem ilustrativa · criada por IA';
+  caption.textContent = 'Resultados individuais podem variar.';
   media.append(caption);
   item.querySelector('.treatment-body').prepend(media);
   if (index === 0) item.open = true;
@@ -28,6 +28,8 @@ services.forEach(({id, name, headline, description, cta, message}, index) => {
     const featured = document.querySelector('#treatment-featured');
     featured.src = treatmentImages[index].src;
     featured.alt = treatmentImages[index].alt;
+    featured.width = treatmentImages[index].width;
+    featured.height = treatmentImages[index].height;
   });
   item.querySelector('.text-link').addEventListener('click', () => trackEvent('service_whatsapp_clicked', { service_id: id, service_name: name }));
   list.append(item);

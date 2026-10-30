@@ -23,7 +23,7 @@ Na Vercel, use a raiz do repositório como Root Directory, Framework Preset **Ot
 ## Antes de publicar
 
 - Confirmar telefone, endereço, profissionais, procedimentos disponíveis e informações comerciais com a clínica.
-- Fotografias reais da unidade e avaliações verificadas não foram fornecidas. Nenhum depoimento, profissional ou ambiente real foi inventado. O hero usa a fotografia enviada pelo usuário; as imagens dos tratamentos são editoriais geradas por IA, identificadas como ilustrativas e não representam pacientes ou resultados. A nota e contagem de avaliações do briefing foram omitidas até verificação.
+- Fotografias reais da unidade e avaliações verificadas não foram fornecidas. Nenhum depoimento, profissional ou ambiente real foi inventado. O hero usa a fotografia enviada pelo usuário; as fotos dos tratamentos foram fornecidas pelo usuário e são exibidas integralmente, sem edição dos comparativos. A nota e contagem de avaliações do briefing foram omitidas até verificação.
 - Definir o domínio oficial para adicionar canonical, URL de Open Graph e sitemap. Não foi inventado um domínio.
 - O mapa só se conecta ao Google após solicitação do visitante. As fontes usam Google Fonts, com alternativas locais. Não há rastreadores, formulário de coleta ou armazenamento de respostas; a seleção é encaminhada apenas quando o visitante abre o WhatsApp.
 - A composição é renderizada em Canvas 2D com geometria 3D, sem depender de WebGL. Animação pausada fora da tela; movimento reduzido respeitado.
@@ -40,7 +40,7 @@ Perguntas e textos condicionais: `src/quiz-data.js`. Interface: `src/quiz.js` e 
 
 ## Imagens dos tratamentos
 
-Cinco imagens editoriais geradas por IA em `public/images/treatments/`. São ilustrações de áreas de interesse, sem representar procedimentos em execução, pacientes reais ou resultados. O mapeamento e as descrições acessíveis ficam em `src/treatment-images.js`. No desktop, a imagem em destaque acompanha o tratamento aberto; no celular, cada imagem aparece dentro do respectivo tratamento. Carregamento sob demanda e dimensões reservadas evitam carregar todos os arquivos na primeira dobra.
+Cinco montagens fotográficas fornecidas pelo usuário em `public/images/treatments/`. As montagens são preservadas sem cortes e acompanhadas de uma observação de que resultados individuais podem variar. O mapeamento e as descrições acessíveis ficam em `src/treatment-images.js`. No desktop, a imagem em destaque acompanha o tratamento aberto; no celular, cada imagem aparece dentro do respectivo tratamento. Carregamento sob demanda e dimensões reservadas evitam carregar todos os arquivos na primeira dobra.
 
 ## Serviços confirmados e segundo questionário
 

@@ -8,3 +8,13 @@
 .treatment-inline-image img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
 .treatment-inline-image figcaption{position:absolute;bottom:0;left:0;right:0;padding:35px 16px 14px;background:linear-gradient(transparent,#0b0b0bc9);font-size:8px;color:#d2c7b4;letter-spacing:.5px}
 @media(max-width:760px){.treatment-layout{display:block}.treatment-visual{display:none}.treatment-inline-image{display:block}.treatment-body{padding-left:0;padding-right:0}.treatment-body>h3,.treatment-body>p,.treatment-body>.text-link{margin-left:30px}.treatment-list summary{line-height:1.2}.treatment-inline-image img{max-height:510px;object-position:center}}
+
+/* Preserve the complete supplied comparisons without cropping or overlays. */
+.treatment-visual{aspect-ratio:auto;overflow:visible}
+.treatment-visual>img{position:static;width:100%;height:auto;object-fit:contain;transform:none!important}
+.treatment-visual:after{display:none}
+.treatment-visual>span{position:static;display:block;padding:20px 22px 0;font-size:9px}
+.treatment-visual>p{position:static;margin:0;padding:18px 22px 8px;max-width:100%;font-size:8px}
+.treatment-visual>small{position:static;display:block;padding:0 22px 20px;font-size:8px;line-height:1.7}
+.treatment-inline-image img{aspect-ratio:auto;height:auto;max-height:none;object-fit:contain;transform:none!important}
+.treatment-inline-image figcaption{position:static;padding:12px 14px;background:#17140f;line-height:1.7}
