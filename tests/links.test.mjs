@@ -14,5 +14,8 @@ test('Somente os cinco serviços confirmados, com imagens existentes e links exa
  }
  const html=await readFile('index.html','utf8');
  assert.equal((html.match(/id="tratamentos"/g)||[]).length,1);
+ assert.equal((html.match(/class="evaluation section/g)||[]).length,1);
+ assert.equal((html.match(/id="avaliacao"/g)||[]).length,1);
+ assert.ok(!html.includes('id="quiz"'));
  for(const word of ['Lavieen','Ultraformer','Rinomodelação','Bioestimuladores','Preenchimento Facial'])assert.ok(!html.includes(word));
 });

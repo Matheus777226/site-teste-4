@@ -36,7 +36,6 @@ services.forEach(({id, name, headline, description, cta, message}, index) => {
 });
 document.querySelectorAll('[data-wa]').forEach(a => { a.href = whatsappUrl(a.dataset.wa); a.target = '_blank'; a.rel = 'noopener noreferrer'; });
 import { initQuiz } from './quiz.js';
-initQuiz(document.querySelector('#quiz'));
 initQuiz(document.querySelector('#quiz-2'), quiz2);
 // Keep the floating contact control from covering either quiz's primary action.
 if ('IntersectionObserver' in window) {

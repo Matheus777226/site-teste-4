@@ -47,3 +47,7 @@ Cinco montagens fotográficas fornecidas pelo usuário em `public/images/treatme
 A lista única em `src/data.js` contém Harmonização Corporal, Botox, Preenchimento Bigode Chinês, Preenchimento de Olheiras e Preenchimento Labial. O primeiro questionário permanece com suas três etapas e interesses alinhados. O segundo, em `src/quiz-2-data.js`, usa uma instância independente do mesmo componente, com região, objetivo e intenção; o serviço relacionado é um assunto de conversa, nunca indicação clínica. Cada formulário mantém suas próprias respostas em memória. O visitante confirma o envio pelo botão do WhatsApp após conferir o resumo.
 
 Eventos preparados: `service_viewed`, `service_whatsapp_clicked`, `quiz_1_started`, `quiz_1_completed`, `quiz_2_started`, `quiz_2_step_1`, `quiz_2_step_2`, `quiz_2_completed` e `quiz_2_whatsapp_clicked`. IDs das instâncias evitam colisões de acessibilidade e os eventos distinguem as duas jornadas.
+
+## Questionário único
+
+A página exibe apenas o questionário mais recente, de região, objetivo e intenção, em `#avaliacao`. A instância `#quiz-2` usa `src/quiz-2-data.js`. A seção e a inicialização do questionário anterior foram removidas. Os links internos de avaliação permanecem válidos.
