@@ -11,4 +11,9 @@
 .quiz-option[aria-pressed=true]{box-shadow:none;background:#1b1812}
 .quiz-progress>span{box-shadow:none}
 .floating-wa{box-shadow:none;border-color:#c6a87544}
+.hero-photograph{inset:0;opacity:1}
+.hero-photograph img{display:block;width:100%;height:100%;object-fit:cover;object-position:70% center}
+.hero-photograph:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0b0b0bf5 0%,#0b0b0bd9 30%,#0b0b0b69 49%,transparent 69%),linear-gradient(0deg,#0b0b0b 0%,transparent 22%,transparent 85%,#0b0b0b44 100%)}
+.hero-bottom{z-index:2}
+@media(max-width:760px){.hero-photograph{inset:0;opacity:1}.hero-photograph img{object-position:64% center}.hero-photograph:after{z-index:1;background:linear-gradient(90deg,#0b0b0bda 0%,#0b0b0ba6 38%,#0b0b0b33 100%),linear-gradient(0deg,#0b0b0b 0%,#0b0b0b99 25%,transparent 55%,#0b0b0b44 100%)}.hero-content{z-index:2}}
 @media(max-width:760px){.visual-options .quiz-option{padding:20px;min-height:120px}.visual-options .option-copy strong{font-size:25px}.final-glow{width:400px;height:400px}.ribbon{padding:20px 0}}

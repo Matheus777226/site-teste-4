@@ -36,4 +36,3 @@ if (!reduced.matches && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } }),{threshold:.1});
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
-import('./sculpture.js').then(({createSculpture}) => createSculpture(document.querySelector('#hero-sculpture'))).catch(() => {});
