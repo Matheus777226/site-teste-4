@@ -1,15 +1,30 @@
 import { treatments, whatsappUrl } from './data.js';
+import { treatmentImages } from './treatment-images.js';
 const list = document.querySelector('#treatment-list');
 treatments.forEach(([name, headline, description, cta], index) => {
   const item = document.createElement('details');
   item.innerHTML = `<summary><span class="number">0${index + 1}</span>${name}<span class="plus" aria-hidden="true">+</span></summary><div class="treatment-body"><h3>${headline}</h3><p>${description}</p><a class="text-link" target="_blank" rel="noopener noreferrer" href="${whatsappUrl(`Vi o tratamento ${name} no site da Pherface Blumenau e gostaria de mais informações.`)}">${cta} <span>↗</span></a></div>`;
+  const media = document.createElement('figure');
+  media.className = 'treatment-inline-image';
+  const image = document.createElement('img');
+  image.src = treatmentImages[index].src;
+  image.alt = treatmentImages[index].alt;
+  image.width = 1122; image.height = 1402;
+  image.loading = 'lazy'; image.decoding = 'async';
+  media.append(image);
+  const caption = document.createElement('figcaption');
+  caption.textContent = 'Imagem ilustrativa · criada por IA';
+  media.append(caption);
+  item.querySelector('.treatment-body').prepend(media);
   if (index === 0) item.open = true;
   item.addEventListener('toggle', () => {
     if (!item.open) return;
     [...list.children].forEach(other => { if (other !== item) other.open = false; });
     document.querySelector('#visual-number').textContent = `0${index + 1} — 07`;
     document.querySelector('#visual-caption').textContent = headline;
-    document.querySelector('.orb').style.transform = `rotate(${-23 + index * 23}deg)`;
+    const featured = document.querySelector('#treatment-featured');
+    featured.src = treatmentImages[index].src;
+    featured.alt = treatmentImages[index].alt;
   });
   list.append(item);
 });
